@@ -2,7 +2,7 @@
 from socket import *
 # In order to terminate the program
 import sys
-
+import os
 
 # testing
 
@@ -30,12 +30,15 @@ def webServer(port=13331):
             # Plenty of guidance online on how to open and read a file in python. How should you read it though if you plan on sending it through a socket?
             f = open(filename[1:], "rb")  # fill in start              #fill in end   )
 
+            file_length = os.path.getsize(filename[1:])
+
             # This variable can store the headers you want to send for any valid or invalid request.   What header should be sent for a response that is ok?
             # Fill in start
             outputdata = b"HTTP/1.1 200 OK\r\n"
             outputdata += b"Connection: close\r\n"
             # Content-Type is an example on how to send a header as bytes. There are more!
             outputdata += b"Content-Type: text/html; charset=UTF-8\r\n"
+            outputdata += b"Content-Length: " + str(file_length).encode() + b"\r\n"
             outputdata += b"\r\n"
             # Fill in end
 
