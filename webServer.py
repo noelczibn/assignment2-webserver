@@ -35,8 +35,8 @@ def webServer(port=13331):
             # This variable can store the headers you want to send for any valid or invalid request.   What header should be sent for a response that is ok?
             # Fill in start
             outputdata = b"HTTP/1.1 200 OK\r\n"
+            outputdata += b"Server: SimplePythonWebServer\r\n"
             outputdata += b"Connection: close\r\n"
-            # Content-Type is an example on how to send a header as bytes. There are more!
             outputdata += b"Content-Type: text/html; charset=UTF-8\r\n"
             outputdata += b"Content-Length: " + str(file_length).encode() + b"\r\n"
             outputdata += b"\r\n"
@@ -64,6 +64,7 @@ def webServer(port=13331):
             body = b"<html><body><h1>404 Not Found</h1></body></html>"
 
             outputdata = b"HTTP/1.1 404 Not Found\r\n"
+            outputdata += b"Server: SimplePythonWebServer\r\n"
             outputdata += b"Connection: close\r\n"
             outputdata += b"Content-Type: text/html; charset=UTF-8\r\n"
             outputdata += b"Content-Length: " + str(len(body)).encode() + b"\r\n"
